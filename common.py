@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 
 # читаем файл
 # sheet_data = pd.read_excel('C:\GitRepository\parse_coefs\Чекер.xlsx')
-a = fr'C:/Users/MaslovAP/PycharmProjects/parse-coefficients-txt-terminal/Чекер.xlsx'
+a = fr'C:/Users/User/PycharmProjects/parse-coefficients-txt-terminal/Чекер.xlsx'
 sheet_data = pd.read_excel(a)
 # определяем нужные столбцы
 columns = ['Поезд', 'Нитки', 'Класс обслуживания', 'Скидка на верхнюю полку', 'Дни недели', 'Перевозчик',
@@ -23,29 +23,15 @@ sheet_data['Дата продажи'] = pd.to_datetime(sheet_data['Дата пр
 
 # Константы для подключения к БД
 SQL_driver = '{ODBC Driver 17 for SQL Server}'
-SQL_server = 'FPC-KONKUR-AS1'
-SQL_DB = 'Train'
-SQL_user = 'FPC\ZhigachevDA'
-SQL_password = 'zD@741852963'
-
-
-ip = {
-    'mssql': 'FPC-KONKUR-AS1',
-}
-
-mssql = {
-    'host': ip['mssql'],
-    'password': '^^Fhf[ybls46',
-    'user': 'FPC\MadyshevAV',
-    'db': 'Train',
-    'port': 1433,
-    'cnct': 'mssql+pymssql'
-}
+SQL_server = 'server'
+SQL_DB = 'DB'
+SQL_user = 'domen\user'
+SQL_password = 'password'
 
 db_connect = {
     'driver': "{ODBC Driver 17 for SQL Server}",
-    'server': 'FPC-KONKUR-AS1',
-    'db': 'Train',
-    'user': 'FPC\ZhigachevDA',
-    'password': 'zD@741852963'
+    'server': 'server',
+    'db': 'DB',
+    'user': 'domen\user',
+    'password': 'password'
 }
