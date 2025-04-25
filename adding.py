@@ -53,16 +53,18 @@ path = f"{os.path.dirname(os.path.abspath(__file__))}"
 
 
 def reading_season_file():
+    print('начал читать файлы')
     # Чтение JSON-файла сезонности
-    with open(f"{path}/season.json", "r", encoding="utf-8") as file_w:
-        data = json.load(file_w)
-    # создаем многопоточность для таблицы сезонности
-    with ThreadPoolExecutor(max_workers=5) as executor:
-        all_records = executor.map(reading_seas, data)
-        # Разделение записей
-        for record_group in all_records:
-            # print(record_group)
-            add_season_db(record_group)  # Обработка каждой группы записей
+    with open(f"season.json", "r", encoding="utf-8") as file_w:
+        # data = json.load(file_w)
+        iterator = ijson.items(file_w, 'item')
+        # создаем многопоточность для таблицы сезонности
+        with ThreadPoolExecutor(max_workers=10) as executor:
+            all_records = executor.map(reading_seas, iterator)
+            # Разделение записей
+            for record_group in all_records:
+                # print(record_group)
+                add_season_db(record_group)  # Обработка каждой группы записей
 
 
 def reading_days_file():
